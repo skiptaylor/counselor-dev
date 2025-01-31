@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "3.2.2"
+ruby "3.3.5"
 
 gem 'chronic',            '~> 0.10', '>= 0.10.2'
 gem 'dotenv',             '~> 2.8', '>= 2.8.1'
