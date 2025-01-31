@@ -1,0 +1,103 @@
+<style>
+	td	{
+		font-size: 14px;
+	}
+	th	{
+		text-align: left;
+	}
+	.ng	{
+		background-color: #e6eae2;
+	}
+	.tot	{
+		color: #008b00; font-weight: 900;
+	}
+	.cc-num	{
+		color: #c93025; padding-right: 4px;
+	}
+	.score	{
+		color: #21538f; font-weight: 600; text-align: right;
+	}
+</style>
+
+<div class="row">
+	<div class="span12">
+		
+		<a class="btn btn-small btn-primary pull-right" href="/admin/samplescores">Overall Users Scores</a>
+		<H1 class="page-header">User Scores</H1>
+		
+		<form class="form-search pull-right" method="get" action="/admin/userscores">
+			
+			<div class="input-append">
+			<input type="text" class="input-xlarge search-query" name="search" value="<%= params[:search] %>" />
+			<button type="submit" style="border: 1px solid green;" class="btn btn-success ">Search</button>
+			</div>
+			&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" href="/admin/userscores/">Reset</a>
+		</form>
+		
+		<p style="clear: both;">This page shows the first 200 users with Case Study accounts. The case study number is to the left of the score.</p>
+		
+		<table class="table table-condensed table-bordered">
+			<tbody>
+				<% @users.each do |user| %>
+				
+				<% if user.set_a == true || user.set_b == true || user.set_c == true || user.set_d == true %>
+				<% unless user.admin == true || (user.expiration_date <= DateTime.now) || (user.email.include? "refund") %>
+				<tr>
+					<td colspan="100" class="ng">
+						<strong><%= user.name %></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><%= user.email %></small>&nbsp;&nbsp;<small>User ID</small> <strong><%= user.id %></strong>&nbsp;&nbsp;<small>Expire </small> <strong><%= user.expiration_date %></strong>
+					</td>
+				</tr>
+				<tr>
+					<% if user.set_a %>
+					<th>Set-A</th>
+					<% user.caseaverages.each do |caseaverage| %>
+					<% if caseaverage.casestudy.sett == "A" %>					
+					<td><span class="cc-num"><%= caseaverage.casestudy.title %> </span> <span class="score"><%= caseaverage.score %>%</span></td>
+					<% end %>
+					<% end %>
+					<!-- <td class="tot pull-right">%</td> -->
+					<% end %>
+					
+				</tr>
+				<tr>
+					<% if user.set_b %>
+					<th>Set-B</th>
+					<% user.caseaverages.sort_by{|caseaverage| caseaverage[:title]}.each do |caseaverage| %>
+					<% if caseaverage.casestudy.sett == "B" %>
+					<td><span class="cc-num"><%= caseaverage.casestudy.title %> </span> <span class="score"><%= caseaverage.score %>%</span></td>
+					<% end %>
+					<% end %>
+					<!-- <td class="tot pull-right">%</td> -->
+					<% end %>
+				</tr>
+				<tr>
+					<% if user.set_c %>
+					<th>Set-C</th>
+					<% user.caseaverages.sort_by{|caseaverage| caseaverage[:title]}.each do |caseaverage| %>
+					<% if caseaverage.casestudy.sett == "C" %>
+					<td><span class="cc-num"><%= caseaverage.casestudy.title %> </span> <span class="score"><%= caseaverage.score %>%</span></td>
+					<% end %>
+					<% end %>
+					<!-- <td class="tot pull-right">%</td> -->
+					<% end %>
+				</tr>
+				<tr>
+					<% if user.set_d %>
+					<th>Set-D</th>
+					<% user.caseaverages.sort_by{|caseaverage| caseaverage[:title]}.each do |caseaverage| %>
+					<% if caseaverage.casestudy.sett == "D" %>
+					<td><span class="cc-num"><%= caseaverage.casestudy.title %> </span> <span class="score"><%= caseaverage.score %>%</span></td>
+					<% end %>
+					<% end %>
+					<!-- <td class="tot pull-right">%</td> -->
+					<% end %>
+				</tr>
+				<% end %>
+				<% end %>
+				<% end %>
+				
+		  </tbody>
+		</table>
+	</div>
+</div>
+

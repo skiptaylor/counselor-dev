@@ -1,0 +1,118 @@
+<style>
+}
+	table	{
+		border-top: 1px solid #55baa1;
+		border-collapse: collapse;
+	}
+	tr td	{
+		font-weight: 700;
+		font-size: 14px;
+		border: 1px solid #55baa1;
+		border-collapse: collapse;
+	}
+	tr th	{
+		font-weight: 900;
+		font-size: 14px;
+		text-align: center;
+		border: 2px solid #55baa1;
+		border-collapse: collapse;
+	}
+	.ng	{
+		background-color: #f2faf3;
+	}
+	.tot	{
+		color: #008b00;
+		font-weight: 900;
+	}
+	.score	{
+		color: #21538f; 
+		font-weight: 600;
+	}
+	.count	{
+		color: #c93025;
+		float: right;
+	}
+	.bg	{
+		background-color: #f7f3e9;
+	}
+</style>
+
+<div class="row">
+	<div class="span12">
+		
+		<a class="btn btn-small btn-primary pull-right" href="/admin/userscores">User Scores</a>
+		<H1 class="page-header">Overall Users Scores</H1>
+		<p>This table shows overall averages scores of all case study taken. More users take set-A so it will give a more accurate sample. The small number to the right of the score is the total times the case study was taken.</p>
+		<table class="table">
+			
+			<tbody>
+				<tr style="border: 2px solid #55baa1;">
+					<th> </th> <th>CS-1</th> <th>CS-2</th> <th>CS-3</th> <th>CS-4</th> <th>CS-5</th> <th>CS-6</th> <th>CS-7</th> <th>CS-8</th> <th>CS-9</th><th>CS-10</th> <th>CS-11</th> <th>CS-12</th>
+				</tr>
+				<tr>
+					<th><strong> Set-A</strong></th>
+					<td class="ng"><span class="score"><%= @totalavgerageA1 %>% <small  class="count"><%= @counterA1 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA2 %>% <small  class="count"><%= @counterA2 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA3 %>% <small  class="count"><%= @counterA3 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA4 %>% <small  class="count"><%= @counterA4 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA5 %>% <small  class="count"><%= @counterA5 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA6 %>% <small  class="count"><%= @counterA6 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA7 %>% <small  class="count"><%= @counterA7 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA8 %>% <small  class="count"><%= @counterA8 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA9 %>% <small  class="count"><%= @counterA9 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA10 %>% <small class="count"><%= @counterA10 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA11 %>% <small class="count"><%= @counterA11 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageA12 %>% <small class="count"><%= @counterA12 %></small></span></td>
+				</tr>
+				<tr>
+					<th><strong> Set-B</strong></th>
+					<td class="bg"><span class="score"><%= @totalavgerageB1 %>%  <small class="count"><%= @counterB1 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB2 %>%  <small class="count"><%= @counterB2 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB3 %>%  <small class="count"><%= @counterB3 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB4 %>%  <small class="count"><%= @counterB4 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB5 %>%  <small class="count"><%= @counterB5 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB6 %>%  <small class="count"><%= @counterB6 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB7 %>%  <small class="count"><%= @counterB7 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB8 %>%  <small class="count"><%= @counterB8 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB9 %>%  <small class="count"><%= @counterB9 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB10 %>% <small class="count"><%= @counterB10 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB11 %>% <small class="count"><%= @counterB11 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageB12 %>% <small class="count"><%= @counterB12 %></small></span></td>
+				</tr>
+				<tr>
+					<th><strong> Set-C</strong></th>
+					<td class="ng"><span class="score"><%= @totalavgerageC1 %>%  <small class="count"><%= @counterC1 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC2 %>%  <small class="count"><%= @counterC2 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC3 %>%  <small class="count"><%= @counterC3 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC4 %>%  <small class="count"><%= @counterC4 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC5 %>%  <small class="count"><%= @counterC5 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC6 %>%  <small class="count"><%= @counterC6 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC7 %>%  <small class="count"><%= @counterC7 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC8 %>%  <small class="count"><%= @counterC8 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC9 %>%  <small class="count"><%= @counterC9 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC10 %>% <small class="count"><%= @counterC10 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC11 %>% <small class="count"><%= @counterC11 %></small></span></td>
+					<td class="ng"><span class="score"><%= @totalavgerageC12 %>% <small class="count"><%= @counterC12 %></small></span></td>
+				</tr>
+				<tr>
+					<th><strong> Set-D</strong></th>
+					<td class="bg"><span class="score"><%= @totalavgerageD1 %>%  <small class="count"><%= @counterD1 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD2 %>%  <small class="count"><%= @counterD2 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD3 %>%  <small class="count"><%= @counterD3 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD4 %>%  <small class="count"><%= @counterD4 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD5 %>%  <small class="count"><%= @counterD5 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD6 %>%  <small class="count"><%= @counterD6 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD7 %>%  <small class="count"><%= @counterD7 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD8 %>%  <small class="count"><%= @counterD8 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD9 %>%  <small class="count"><%= @counterD9 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD10 %>% <small class="count"><%= @counterD10 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD11 %>% <small class="count"><%= @counterD11 %></small></span></td>
+					<td class="bg"><span class="score"><%= @totalavgerageD12 %>% <small class="count"><%= @counterD12 %></small></span></td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- <br />
+		<H1 class="page-header">Overall Domains Scores</H1>
+		<p>coming soon</p> -->
+	</div>
+</div>

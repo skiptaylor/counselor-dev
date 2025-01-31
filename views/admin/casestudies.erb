@@ -1,0 +1,45 @@
+<style>
+	tr.cs:hover	{
+		background-color: #dbe6f5;
+	}
+</style>
+
+<div class="row">
+
+	<div class="span12">
+		<H1 class="page-header">Case Studies</H1>
+		<table class="table table-condensed table-stripe">
+			<thead>
+				<tr>
+					<th style="text-align: center;">Set</th>
+					<th>Title</th>
+					<th>Diagnosis</th>
+					<td style="text-align: center;"> </th>
+					<td style="text-align: right;"><a class="btn btn-small btn-success" href="/admin/casestudies/new">New</a></td>
+					
+					
+				</tr>
+			</thead>
+			<tbody>
+				<% @casestudies.sort_by{|casestudy| [casestudy.sett, casestudy.title.to_i]}.each do |casestudy| %>
+				<tr class="cs">
+					<td style="text-align: center;"><% if casestudy.sett == "A" %><strong style="color: #af210e;"><%= casestudy.sett %></strong><% elsif casestudy.sett == "B" %><strong style="color: #0b647f;"><%= casestudy.sett %></strong><% elsif casestudy.sett == "C" %><strong style="color: #487515;"><%= casestudy.sett %></strong><% elsif casestudy.sett == "D" %><strong style="color: #ba9838;"><%= casestudy.sett %></strong><% else %><strong><%= casestudy.sett %></strong><% end %></td>
+					<td>Case Study <%= casestudy.title %></td>
+					<td><%= casestudy.diagnosis %></td>
+					<td style="text-align: center;">
+					<% if casestudy.active %>
+						<span class="label label-success">Active</span>
+					<% else %>
+					<span class="label label">Inactive</span>
+					<% end %>
+					<% if casestudy.sample %><span class="label label-warning">Sample</span><% end %>
+					</td>
+					<td style="text-align: right;"><a class="btn btn-mini btn-primary" href="/admin/casestudies/<%= casestudy.id %>/edit">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-mini btn-info" href="/admin/casestudies/<%= casestudy.id %>/view">View</a></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div style="color: #c6772e; text-align: center;"></div>
+	</div>
+
+</div>

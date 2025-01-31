@@ -1,0 +1,46 @@
+get '/admin/exams/?' do
+	admin!
+	@exams = Exam.all
+	erb :'admin/exams'
+end
+
+get '/admin/exams/:id/?' do
+	admin!
+	@exam = Exam[params[:id]]
+	@questions = Question.where(exam_id: params[:id]).order(:position)
+	@answers = Answer.where(question_id: params[:question_id]).order(:body)
+  @averages = Averages.where(params[:average_id])
+	erb :'admin/exam'
+end
+
+post '/admin/exams/:exam_id/questions/:question_id' do
+	admin!
+  
+  averages = Average.where[params[:average_id]]
+	
+	question = Question[params[:question_id]]
+	params[:position].strip.is_numeric? ? params[:position] = params[:position].strip : params[:position] = question.position
+	question.update(
+		position: params[:position],
+		body: params[:body].strip,
+		score_type: params[:score_type],
+    score_type2: params[:score_type2],
+		countable: false
+	)
+	question.update(countable: true) if params[:countable]
+	
+	question.answers.each do |a|
+		params[:answers]["#{a.id}"]['response'].strip.empty? ? params[:answers]["#{a.id}"]['response'] = nil : params[:answers]["#{a.id}"]['response'].strip!
+		a.update(
+			required: false,
+			body: params[:answers]["#{a.id}"]['body'].strip,
+			response: params[:answers]["#{a.id}"]['response']
+		)
+	end
+	
+	required_answer = Answer[params[:required_answer]]
+	required_answer.update(required: true)
+
+	session[:alert] = { style: 'alert-success', message: "Question #{question.position} updated." }
+	redirect "/admin/exams/#{params[:exam_id]}/"
+end

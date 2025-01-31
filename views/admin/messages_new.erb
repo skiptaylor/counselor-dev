@@ -1,0 +1,89 @@
+<style>
+	code	{
+		color: black;
+		background-color: none;
+		border: none;
+		font-size: 1em;
+	}
+	span	{
+		color: #c42925;
+	}
+</style>
+
+<div class="row">
+  
+  <div class="span3">
+    <%= erb :'admin/navigation', layout: false %>
+  </div>
+  
+  <div class="span9">
+    
+    <h2>New Message</h2>
+    
+    <form method="post">
+      <p>
+        <textarea name="body" id="body" rows="5" class="span9"></textarea>
+      </p>
+      <div class="row">
+        <div class="span2">
+          <label class="checkbox" for="profile">
+            <input type="checkbox" name="profile" id="profile" /> Profile
+          </label>
+        </div>
+        <div class="span2">
+          <label class="checkbox" for="casestudies">
+            <input type="checkbox" name="casestudies" id="casestudies"> Case Study
+          </label>
+        </div>
+        <div class="span2" style="margin-left: 3em;">
+          <label class="checkbox" for="nce">
+            <input type="checkbox" name="nce" id="nce"> NCE
+          </label>
+        </div>
+			</div>
+			<div class="row">
+        <div class="span9" style="text-align: right;">
+          <input type="submit" value="Add Message" class="btn btn-primary pull-right" /><a class="btn btn-secondary" href="/admin/messages">Cancel</a> &nbsp; 
+        </div>
+      </div>
+    </form>
+    <br /><hr />
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td>
+				<h4>Bold single line header</h4>
+			</td>
+			<td>
+				 <code><span>&lt;h4&gt;</span>Bold single line header<span>&lt;/h4&gt;</span></code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Use <b>bold</b> words in text
+			</td>
+			<td>
+				 <code>Use <span>&lt;b&gt;</span>bold<span>&lt;/b&gt;</span> words in text</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Use <i>italic</i> words in text
+			</td>
+			<td>
+
+				 <code>Use <span>&lt;i&gt;</span>italics<span>&lt;/i&gt;</span> words in text</code>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Line break
+			</td>
+			<td>
+				 <code><span>&lt;br /&gt;</code>
+			</td>
+		</tr>
+	</table>
+    
+  </div>
+</div>
+

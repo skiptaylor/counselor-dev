@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="span12">
+		<h1>Chart</h1>		
+		<hr />
+		<form class="form-horizontal" method="post">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="part">Part</label>
+					<div class="controls">
+						<input type="text" name="part" id="part" class="span2" value="<%= @chart.part %>" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="position">Position</label>
+					<div class="controls">
+						<input type="text" name="position" id="position" class="span2 md" value="<%= @chart.position %>" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="title">Title</label>
+					<div class="controls">
+						<input type="text" name="title" id="title" class="span9" value="<%= @chart.title %>" />
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="body">Body</label>
+					<div class="controls">
+						<textarea type="text" name="body" id="body" class="span9" rows="16"><%= @chart.body %></textarea>
+					</div>
+				</div>
+				
+				
+				<hr />
+				<div class="control pull-right">
+					<input class="btn btn-small btn-success" type="submit" value="Save" /> &nbsp; <a class="btn btn-small" onclick="goBack()">Cancel</a>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+<script>
+	function goBack() {
+	window.history.back();
+}
+</script>
+

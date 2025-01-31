@@ -1,0 +1,71 @@
+<div class="row">
+	
+	<div class="span3">
+		<%= erb :'admin/navigation', layout: false %>
+	
+	<div class="affix" style="margin-top: 660px;">
+		<form method="get">
+			<p><%= @start.to_fields 'start' %></p>
+			<p><%= @end.to_fields 'end' %></p>
+			<p>
+				<button type="submit" class="btn btn-primary">Filter - Created on</button>
+				<a href="<%= request.url %><%= params.count > 0 ? '&export=true' : '?export=true' %>" class="btn">Export</a>
+			</p>
+			
+		</form>
+	</div>
+	</div>
+	
+	<div class="span9">
+
+		<H1 class="page-header">Active Users</H1>
+		<!-- <form class="form-search pull-right" method="get" action="/admin/users">
+			<div class="input-append">
+			<input type="text" class="input-xlarge search-query" name="search" value="<%= params[:search] %>" />
+			<button type="submit" style="border: 1px solid green;" class="btn btn-success ">Search</button>
+		</div>
+		</form> -->
+
+		<table class="table table-condensed table-striped table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th style="text-align: left;">Sets</th>
+					<th>Created</th>
+					<th>Exipres</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @users.reverse_order(:created_at).each do |user| %>
+					<% unless user.admin || (user.expiration_date <= DateTime.now) || (user.email.include? "refund") || (user.email == "sample") %>
+					<% if user.set_a == true || user.set_b == true || user.set_c == true || user.set_d == true || user.max_exams > 0 %>
+				
+					<tr>
+						<td>
+							<%= user.name %>
+						</td>
+						<td>	
+
+							<%= user.email %>
+						</td>
+						<td style="text-align: left;">
+							<small><% if user.set_a == true %>A <% end %><% if user.set_b == true %>B <% end %><% if user.set_c == true %>C <% end %><% if user.set_d == true %>D <% end %><% if user.max_exams == 2 %>N2 <% end %><% if user.max_exams == 4 %>N4 <% end %></small>
+							
+						</td>
+						<td>
+							<small><%= user.created_at.to_date %> </small>
+						</td>
+						<td>
+							<small><%= user.expiration_date %> </small>
+						</td>
+					</tr>
+					<% end %>
+					<% end %>
+				<% end %>
+		  </tbody>
+		</table>
+	</div>
+	
+</div>
+
