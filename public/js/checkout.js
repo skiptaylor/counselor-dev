@@ -1,7 +1,7 @@
 (function() {
   $(window).load(function() {
     var displayErrors, summarize, validateEmail;
-    Stripe.setPublishableKey('pk_09rfEloWlDjIMVTav6KJJ0ijH3b57');
+    Stripe.setPublishableKey('');
     $.ajaxSetup({
       async: false
     });
