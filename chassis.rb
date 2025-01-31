@@ -19,15 +19,15 @@ require 'json'
 
 Dotenv.load
 
-configure :production do
-  before do
-    unless request.request_method == 'POST'
-      unless request.url.include? "https://www."
-        redirect ENV.fetch('DOMAIN')
-      end
-    end
-  end
-end
+# configure :production do
+#   before do
+#     unless request.request_method == 'POST'
+#       unless request.url.include? "https://www."
+#         redirect ENV.fetch('DOMAIN')
+#       end
+#     end
+#   end
+# end
 
 configure do
 
