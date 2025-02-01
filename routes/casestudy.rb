@@ -122,8 +122,9 @@ get '/casestudies/sample/?' do
 	unless session[:user]
 		user = User.create(email: 'sample', password: 'sample', expiration_date: DateTime.now + 1 )
 		session[:user] = user.id
-		
+		session[:sample] = true
 	end
+  user.save
   redirect '/casestudies/1'
 end
 

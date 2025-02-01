@@ -1,6 +1,6 @@
 post '/add-score/?' do
-
-	answer = Answer params[:answer]
+  
+  answer = Answer params[:answer]
 
 	Score.where(user_id: session[:user], question_id: answer.question_id).destroy if answer.question.exam_id
 
@@ -27,10 +27,11 @@ post '/add-score/?' do
 		sample = true if answer.question.exam.sample
 	end
 	
-	Use.first_or_create(
+	Use.find_or_create(
 		user_id: session[:user],
 		scenario_id: answer.question.scenario_id,
 		exam_id: answer.question.exam_id,
 		sample: sample
 	)
+  
 end

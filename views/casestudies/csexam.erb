@@ -132,10 +132,10 @@
 			<ul style="list-style: none;">
 				<li><strong><%= casequestion.position %>.</strong> <%= casequestion.body %>
 					<ol type="A">
-						<% casequestion.caseanswers.each do |caseanswer| %>
+						<% casequestion.caseanswers.sort_by(&:position).each do |caseanswer| %>
 						<label class="radio">
 							<%= '<i class="icon-ok"></i>' if caseanswer && @average %>
-						<input class="csradio" type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
+						<input type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
 						 <% if caseanswer.correct == "true" %>
 						<li><% caseanswer.position %> <%= caseanswer.body %></li>
 						<% else %>
@@ -199,10 +199,10 @@
 			<ul style="list-style: none;">
 				<li><strong><%= casequestion.position %>.</strong> <%= casequestion.body %>
 					<ol type="A">
-						<% casequestion.caseanswers.each do |caseanswer| %>
+						<% casequestion.caseanswers.sort_by(&:position).each do |caseanswer| %>
 						<label class="radio">
 							<%= '<i class="icon-ok"></i>' if caseanswer && @average %>
-						<input class="csradio" type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
+						<input type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
 						 <% if caseanswer.correct == "true" %>
 						<li><% caseanswer.position %> <%= caseanswer.body %></li>
 						<% else %>
@@ -255,10 +255,10 @@
 			<ul style="list-style: none;">
 				<li><strong><%= casequestion.position %>.</strong> <%= casequestion.body %>
 					<ol type="A">
-						<% casequestion.caseanswers.each do |caseanswer| %>
+						<% casequestion.caseanswers.sort_by(&:position).each do |caseanswer| %>
 						<label class="radio">
 							<%= '<i class="icon-ok"></i>' if caseanswer && @average %>
-						<input class="csradio" type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
+						<input type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>" />
 						 <% if caseanswer.correct == "true" %>
 						<li><% caseanswer.position %> <%= caseanswer.body %></li>
 						<% else %>

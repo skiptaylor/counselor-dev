@@ -115,7 +115,7 @@
 			<ul style="list-style: none;">
 				<li><%= casequestion.position %>. <%= casequestion.body %>
 					<ol type="A">
-						<% casequestion.caseanswers.each do |caseanswer| %>
+						<% casequestion.caseanswers.sort_by(&:position).each do |caseanswer| %>
 						<% unless caseanswer.deleted_at %>
 						<label class="radio">
 						<input type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>">
@@ -159,8 +159,8 @@
 			<ul style="list-style: none;">
 				<li><%= casequestion.position %>. <%= casequestion.body %>
 					<ol type="A">
-						<% casequestion.caseanswers.each do |caseanswer| %>
-						<% unless caseanswer.deleted_at %>
+						<% casequestion.caseanswers.sort_by(&:position).each do |caseanswer| %>
+						
 						<label class="radio">
 						<input type="radio" name="optionsRadios<%= casequestion.position %>" id="optionsRadios<%= caseanswer.id %>" value="option<%= caseanswer.id %>">
 						<% if caseanswer.correct == "true" %>
@@ -169,8 +169,8 @@
 						<li><% caseanswer.position %> <%= caseanswer.body %></li>
 						<% end %>
 						</label>
-						<% end %>	
 						<% end %>
+						
 					</ol>
 				</li>
 				<li style="margin-top: 8px;" class="md"><blockquote><%= markdown casequestion.discussion %></blockquote></li>
