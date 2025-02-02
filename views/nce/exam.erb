@@ -1,4 +1,4 @@
-<script src="/js/exam.js"></script>
+<script src="/js/exam.js" type="text/javascript"></script>
 	
 <div class="page-header">
 	<h1>
@@ -110,9 +110,10 @@
 	<%
 		read = false
 		answers = []
-		@answers.each {|a| answers << a if a.question_id == question.id}
-		answers.each {|a| read = true if @scores.include? a.id }
-	%>
+		@answers = @answers.filter { |a| a.question == question }
+		score_answer_ids = @scores.map { |s| s.answer.id }
+		@read = @answers.any? {|a| score_answer_ids.include? a.id }
+  %>
 	
 	<p <%= 'class="unread"' unless @average || read %>>
 		<%= question.position %>. <%= question.body %>
@@ -120,26 +121,32 @@
 
 	<form>
 		<div class="row">
-			<% answers.each do |answer| %>
-				<% notes = answer.response if @average && answer.required? %>
+			<% @answers.each do |answer| %>
+		
+				<% notes = answer.response if @average && answer.required %>
 				<div class="span12">
+					
 					<%
-						if @average && @scores.include?(answer.id) && answer.required?
+						if @average && @scores.include?(answer.id) && answer.required
 							style = 'color: green; font-weight: bold;'
-						elsif @average && @scores.include?(answer.id) && !answer.required?
+						elsif @average && @scores.include?(answer.id) && !answer.required
 							style = 'color: red; font-weight: bold;'
 						else
 							style = 'color: inheret;'
 						end
 					%>
+					
 					<label class="radio" style="<%= style %>">
-						<%= '<i class="icon-ok"></i>' if answer.required? && @average %>
-						<input type="radio" name="<%= question.id %>" value="<%= answer.id %>" <%= 'checked' if @scores.include answer.id %> <%= 'disabled' if @average %> /> <%= answer.body %>
+						<%= '<i class="icon-ok"></i>' if answer.required && @average %>
+						<input type="radio" name="<%= question.id %>" value="<%= answer.id %>" <%= 'checked' if @scores.include? answer.id %> <%= 'disabled' if @average %> /> <%= answer.body %>
 					</label>
 				</div>
+				
 			<% end %>
 		</div>
 	</form>
+	
+	<!-- <%= @answers.count %> -->
 	
 	<%= "<blockquote><p>#{notes}</p></blockquote>" if notes %>	
 	

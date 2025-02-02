@@ -9,7 +9,7 @@ get '/admin/exams/:id/?' do
 	@exam = Exam[params[:id]]
 	@questions = Question.where(exam_id: params[:id]).order(:position)
 	@answers = Answer.where(question_id: params[:question_id]).order(:body)
-  @averages = Averages.where(params[:average_id])
+  @averages = Average.where(params[:average_id])
 	erb :'admin/exam'
 end
 

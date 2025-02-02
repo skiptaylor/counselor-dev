@@ -1,17 +1,11 @@
-<script src="/js/nce-guide.js"></script>
+<script src="/js/exam.js" type="text/javascript"></script>
 
-<ul class="breadcrumb">
-	<li>NCE <span class="divider">/</span></li>
-	<li><a href="/nce/exams">Exams</a> <span class="divider">/</span></li>
-	<li class="active"><%= @exam.title %> Study Guide</li>
-</ul>
-	
 <div class="page-header">
 	<h1>
-		<%= @exam.title %>
+		<%= @exams.title %>
 		<small class="darker-gray"><%= params[:group] %></small>
 	</h1>
-	<p>This partial exam is a study tool and will not be scored. It focuses on the <strong><%= params[:group] %></strong> area of <%= @exam.title %> providing instant feedback to each question.</p>
+	<p>This partial exam is a study tool and will not be scored. It focuses on the <strong><%= params[:group] %></strong> area of <%= @exams.title %> providing instant feedback to each question.</p>
 </div>
 
 <% @questions.each do |question| %>

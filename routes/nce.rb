@@ -43,8 +43,8 @@ get '/nce/guide/:id/:group/?' do
 		end
 	end
 
-	@exam = Exam[params[:id]]
-	@questions = @exam.questions(:order => :position, score_type2: params[:group])
+	@exams = Exam[params[:id]]
+	@questions = Question.where(exam_id: params[:exam_id], score_type2: params[:group]).order(:position)
 	@answers = Answer.where(question_id: params[:question_id]).order(:body)
 	
   erb :'nce/guide'
@@ -78,8 +78,8 @@ get '/nce/exams/:id/?' do
 	if params[:group]
 		@questions = @questions.where(score_type: params[:group], score_type2: params[:group])
 	end
-	@answers = Answer.where(question_id: params[:question_id]).order(:body)
-	
+	@answers = Answer.all
+
   erb :'nce/exam'
 end
 
@@ -92,13 +92,16 @@ get '/nce/exams/:id/score/?' do
 	scores.each {|s| @scores << s.answer_id }
 	@exam = Exam[params[:id]]
 	@questions = Question.where(exam_id: params[:exam_id]).order(:position)
-	@answers = Answer.where(question_id: @questions, :order => :body)
+	@answers = Answer.where(
+    question_id: Question.select(:id).where(exam_id: params[:id])
+  )
+  
+  
 
 	@average = ((scores.where(countable: true, required: true).count.to_f / @exam.questions(:countable => true).count.to_f)*100).to_i
 
 	@average = 0 if @average < 0
 	Averages.find_or_create(exam_id: params[:id], user_id: session[:user], score: @average)
-  # Averages.find_or_create(exam_id: params[:id], user_id: session[:user], score: @average)
 	Use.find_or_create(user_id: session[:user], exam_id: params[:id], sample: @exam.sample)
   
 	@breakdown = {}
