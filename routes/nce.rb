@@ -78,8 +78,10 @@ get '/nce/exams/:id/?' do
 	if params[:group]
 		@questions = @questions.where(score_type: params[:group], score_type2: params[:group])
 	end
-	@answers = Answer.all
 
+  @answers = Answer.where(question_id: params[:question_id]).order(:body)
+  # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:exam_id]))
+  
   erb :'nce/exam'
 end
 
@@ -91,12 +93,12 @@ get '/nce/exams/:id/score/?' do
 	scores = Score.where(user_id: session[:user], exam_id: params[:id])
 	scores.each {|s| @scores << s.answer_id }
 	@exam = Exam[params[:id]]
-	@questions = Question.where(exam_id: params[:exam_id]).order(:position)
-	@answers = Answer.where(
+	@questions = Question.where(exam_id: params[:id]).order(:position)
+	
+  
+  @answers = Answer.where(
     question_id: Question.select(:id).where(exam_id: params[:id])
   )
-  
-  
 
 	@average = ((scores.where(countable: true, required: true).count.to_f / @exam.questions(:countable => true).count.to_f)*100).to_i
 
