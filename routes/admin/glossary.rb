@@ -1,6 +1,6 @@
-get '/admin/glossary/other?' do
+get '/admin/glossaries/other?' do
 	admin!
-  @glossary = Glossary.all
+  @glossaries = Glossary.all
 	n = Glossary.where(exam: nil)
 	s = Glossary.where(exam: '')
 	@glossary = n | s
@@ -9,32 +9,32 @@ get '/admin/glossary/other?' do
 	# @glossary.unique
   
   
-	@glossary.each do |g|
+	@glossaries.each do |g|
 		g.chapter = '' if g.chapter.nil?
 	end
 	
   erb :'admin/glossary'
 end
 
-get '/admin/glossary/ncmhce?' do
+get '/admin/glossaries/ncmhce?' do
 	admin!
-	@glossary = Glossary.where(exam: 'NCMHCE')   # need to order term
-	erb :'admin/glossary'
+	@glossaries = Glossary.where(exam: 'NCMHCE')   # need to order term
+	erb :'admin/glossaries'
 end
 
-get '/admin/glossary/nce?' do
+get '/admin/glossaries/nce?' do
 	admin!
-	@glossary = Glossary.where(exam: 'NCE')   # need to order term
-	erb :'admin/glossary'
+	@glossaries = Glossary.where(exam: 'NCE')   # need to order term
+	erb :'admin/glossaries'
 end
 
-get '/admin/glossary/new/?' do
+get '/admin/glossaries/new/?' do
 	admin!
 	@term = Glossary.new
 	erb :'admin/term'
 end
 
-post '/admin/glossary/new/?' do
+post '/admin/glossaries/new/?' do
 	admin!
 	Glossary.create(
 		term: params[:term],
@@ -48,16 +48,16 @@ post '/admin/glossary/new/?' do
 		message: "#{params[:term]} has been created."
 	}
 	params[:exam] = 'other' if params[:exam].empty?
-	redirect "/admin/glossary/#{params[:exam].downcase}"
+	redirect "/admin/glossaries/#{params[:exam].downcase}"
 end
 
-get '/admin/glossary/:id/?' do
+get '/admin/glossaries/:id/?' do
   admin!
   @term = Glossary[params[:id]]
   erb :'admin/term'
 end
 
-post '/admin/glossary/:id/?' do
+post '/admin/glossaries/:id/?' do
   admin!
   @term = Glossary[params[:id]]
   @term.update(
@@ -72,10 +72,10 @@ post '/admin/glossary/:id/?' do
     message: "#{params[:term]} has been updated."
   }
   params[:exam] = 'other' if params[:exam].empty?
-  redirect "/admin/glossary/#{params[:exam].downcase}"
+  redirect "/admin/glossaries/#{params[:exam].downcase}"
 end
 
-get '/admin/glossary/:id/delete/?' do
+get '/admin/glossaries/:id/delete/?' do
 	admin!
 	term = Glossary[params[:id]]
 	term.destroy

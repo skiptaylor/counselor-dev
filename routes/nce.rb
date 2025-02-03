@@ -7,9 +7,9 @@ get '/nce/?' do
 	erb :nce
 end
 
-get '/nce/glossary/?' do
+get '/nce/glossaries/?' do
 	@exam = 'NCE'
-	@glossary = Glossary.where(exam: 'NCE').order(:chapter)
+	@glossaries = Glossary.where(exam: 'NCE')
 	
   erb :'cards'
 end
@@ -73,15 +73,16 @@ get '/nce/exams/:id/?' do
 	end
 	@scores = []
 	Score.where(user_id: session[:user], exam_id: params[:id]).each {|s| @scores << s.answer_id }
+ 
 	@exam = Exam[params[:id]]
 	@questions = Question.where(exam_id: params[:id]).order(:position)
 	if params[:group]
 		@questions = @questions.where(score_type: params[:group], score_type2: params[:group])
 	end
-
-  @answers = Answer.where(question_id: params[:question_id]).order(:body)
-  # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:exam_id]))
   
+  # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:id])).order(:body)
+  @answers = Answer.where(question_id: params[:id]).order(:body)
+  puts params
   erb :'nce/exam'
 end
 
@@ -94,12 +95,11 @@ get '/nce/exams/:id/score/?' do
 	scores.each {|s| @scores << s.answer_id }
 	@exam = Exam[params[:id]]
 	@questions = Question.where(exam_id: params[:id]).order(:position)
-	
-  
-  @answers = Answer.where(
-    question_id: Question.select(:id).where(exam_id: params[:id])
-  )
-
+ 
+  # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:id]))
+  @answers = Answer.where(question_id: question_ids)
+  puts @answers
+ 
 	@average = ((scores.where(countable: true, required: true).count.to_f / @exam.questions(:countable => true).count.to_f)*100).to_i
 
 	@average = 0 if @average < 0

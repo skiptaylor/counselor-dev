@@ -7,9 +7,9 @@
 #   erb :ncmhce
 # end
 
-get '/ncmhce/glossary/?' do
+get '/ncmhce/glossaries/?' do
   @exam = 'NCMHCE'
-  @glossary = Glossary.where(exam: 'NCMHCE').sort!{|a,b| a.chapter <=> b.chapter}
+  @glossaries = Glossary.where(exam: 'NCMHCE').sort!{|a,b| a.chapter <=> b.chapter}
   
   erb :'cards'
 end

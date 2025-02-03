@@ -7,16 +7,16 @@
 	<div class="span9">
 		<!-- <ul class="breadcrumb">
 			<li>Admin <span class="divider">/</span></li>
-			<li class="active">Glossary</li>
+			<li class="active">glossaries</li>
 		</ul> -->
 
 		<p style="float: right;">
-			<a href="/admin/glossary/new" class="btn btn-success btn-small"><i class="icon-plus icon-white"></i> New Term</a>
+			<a href="/admin/glossaries/new" class="btn btn-success btn-small"><i class="icon-plus icon-white"></i> New Term</a>
 		</p>
 		
 		<h1>Terms</h1>
 
-		<% @glossary.sort_by{|g| g.chapter}.group_by(&:chapter).each do |chapter, terms| %>
+		<% @glossaries.sort_by{|g| g.chapter}.group_by(&:chapter).each do |chapter, terms| %>
 			<div style="margin: 18px 0 4px 0; padding: 0 6px; background-color: #b10000; color: #ffffff;">
 				<h3 style="color: #ffffff;"><%= chapter %></h3>
 			</div>
@@ -45,8 +45,8 @@
 					</div>
 					<div class="span2">
 						<div class="btn-group" style="float: right;">
-							<a href="/admin/glossary/<%= glossary.id %>" class="btn btn-info btn-mini"><i class="icon-edit icon-white"></i></a>
-							<a class="btn btn-mini btn-danger" href="/admin/glossary/<%= glossary.id %>/delete"><i class="icon-remove icon-white"></i></a>
+							<a href="/admin/glossaries/<%= glossary.id %>" class="btn btn-info btn-mini"><i class="icon-edit icon-white"></i></a>
+							<a class="btn btn-mini btn-danger" href="/admin/glossaries/<%= glossary.id %>/delete"><i class="icon-remove icon-white"></i></a>
 						</div>
 					</div>
 					
