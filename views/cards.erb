@@ -17,10 +17,10 @@ The following terms are taken from the study material. The definitions of these 
 			<b class="caret"></b>
 		</a>
 		
-    <ul class="dropdown-menu" style="width: 500px;">
+    <ul class="dropdown-menu" style="">
 		<% @glossaries.sort_by{|g| g.chapter}.group_by(&:chapter).each do |chapter, terms| %>
-		
-			<li ><strong><%= chapter %></strong></li>
+			
+			<li><a href="/cards/<%= @exam %>/<%= chapter %>" class=""><%= chapter %></a></li>
 		
 		<% end %>
     </ul>
@@ -28,20 +28,6 @@ The following terms are taken from the study material. The definitions of these 
   </li>
 </ul>
 
-
-<div class="tab-content">
-	<% @glossaries.sort_by{|g| g.chapter}.group_by(&:chapter).each do |chapter, terms| %>
-		<div class="tab-pane" id="terms">
-
-			<p>
-				<a href="/cards/<%= @exam %>/<%= chapter %>" class="btn btn-large btn-success"><strong>View <%= chapter %> Flash Cards</strong></a>
-			</p>
-
-			<hr />
-
-		</div>
-	<% end %>
-</div>
 
 
 

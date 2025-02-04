@@ -18,13 +18,13 @@ end
 
 get '/admin/glossaries/ncmhce?' do
 	admin!
-	@glossaries = Glossary.where(exam: 'NCMHCE')   # need to order term
+	@glossaries = Glossary.where(exam: 'NCMHCE').order(:terms)  # need to order term
 	erb :'admin/glossaries'
 end
 
 get '/admin/glossaries/nce?' do
 	admin!
-	@glossaries = Glossary.where(exam: 'NCE')   # need to order term
+	@glossaries = Glossary.where(exam: 'NCE').order(:terms)   # need to order term
 	erb :'admin/glossaries'
 end
 
