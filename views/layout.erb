@@ -145,9 +145,9 @@
 	<% unless request.path_info.include? "/manuals" %>
 	<!-- <% unless session[:admin] %> -->
 	<div id="footer">
-		<p>Published by <a href="http://careertrainingconcepts.com/" target="_blank"><strong>Career Training Concepts Inc.</strong></a> &nbsp; 888-326-9229<br /> &copy; 2006-<%= Time.now.strftime("%Y") %> Dr. Gary Arthur. All rights reserved. Reproduction in whole or in part without permission is prohibited.
+		<p><!-- Published by <a href="http://careertrainingconcepts.com/" target="_blank"><strong>Career Training Concepts Inc.</strong></a> &nbsp; 888-326-9229<br />  -->&copy; 2006-<%= Time.now.strftime("%Y") %> Dr. Gary Arthur. All rights reserved. Reproduction in whole or in part without permission is prohibited.
 		</p>
-		<p>• <%= session[:user] %> • <%= session[:email] %> •</p>
+		<% if settings.development? %><p>• <%= session[:user] %> • <%= session[:email] %> •</p><% end %>
 	</div>
 	<!-- <% end %> -->
 	<% end %>
