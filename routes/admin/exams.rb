@@ -7,7 +7,7 @@ end
 get '/admin/exams/:id/?' do
 	admin!
 	@exam = Exam[params[:id]]
-	@questions = Question.where(exam_id: params[:id]).order(:position)
+	@questions = @exam.questions
 	@answers = Answer.where(question_id: params[:question_id]).order(:body)
   
 	erb :'admin/exam'
@@ -27,7 +27,7 @@ post '/admin/exams/:exam_id/questions/:question_id' do
 	)
 	question.update(countable: true) if params[:countable]
 	
-	question.where(answer_id: params[:answer_id]).each do |a|
+	question.answers.each do |a|
 		params[:answers]["#{a.id}"]['response'].strip.empty? ? params[:answers]["#{a.id}"]['response'] = nil : params[:answers]["#{a.id}"]['response'].strip!
 		a.update(
 			required: false,

@@ -16,7 +16,7 @@
 		<h1><%= @exam.title %></h1>
 		
 		
-		<% @question = Question.each do |question| %>
+		<% @questions.each do |question| %>
 			<hr />
 			<div class="row">
 								
@@ -28,11 +28,11 @@
 					</p>
 					<%
 						answers = []
-						@answers.each {|a| answers << a if a.question_id == question.id}
+						answers.each {|a| answer << a if a.question_id == question.id}
 					%>
 					<p>
-						<% answers.each do |answer| %>
-							<%= answer.body %> <%= '<i class="icon-ok"></i>' if answer.required? %>
+						<% question.answers.sort_by(&:body).each do |answer| %>
+							<%= answer.body %> <%= '<i class="icon-ok"></i>' if answer.required %>
 							<%= answer.response ? "<blockquote>#{answer.response}</blockquote>" : '<br />' %>
 						<% end %>
 					</p>
@@ -75,10 +75,10 @@
 									<textarea style="width: 97%; height: 100px;" name="body"><%= question.body %></textarea>
 								</fieldset>
 								<fieldset>
-									<% answers.each do |answer| %>
+									<% question.answers.sort_by(&:body).each do |answer| %>
 										<br />
 										<p>
-											<input type="radio" name="required_answer" value="<%= answer.id %>" <%= 'checked' if answer.required? %> />&nbsp;
+											<input type="radio" name="required_answer" value="<%= answer.id %>" <%= 'checked' if answer.required %> />&nbsp;
 											<input type="text" name="answers[<%= answer.id %>][body]" style="width: 93%;" value="<%= answer.body %>" />
 											<br /><br />
 											&nbsp;&nbsp;&nbsp;&nbsp;
