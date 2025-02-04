@@ -97,7 +97,7 @@ get '/nce/exams/:id/score/?' do
 	@questions = Question.where(exam_id: params[:id]).order(:position)
  
   # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:id]))
-  @answers = Answer.where(question_id: question_ids)
+  @answers = Answer.where(question_id: @questions)
   puts @answers
  
 	@average = ((scores.where(countable: true, required: true).count.to_f / @exam.questions(:countable => true).count.to_f)*100).to_i
