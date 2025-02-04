@@ -122,7 +122,7 @@
 	<form>
 		<div class="row">
 			
-		<% question.answers.each do |answer| %>
+		<% question.answers.sort_by(&:body).each do |answer| %>
 				<% notes = answer.response if @average && answer.required %>
 				<div class="span12">
 				

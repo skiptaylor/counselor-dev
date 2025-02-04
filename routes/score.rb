@@ -1,6 +1,6 @@
 post '/add-score/?' do
   
-  answer = Answer[params[:answer_id]]
+  answer = Answer[params[:answer]]
 
 	Score.where(user_id: session[:user], question_id: answer.question_id).destroy if answer.question.exam_id
 
