@@ -16,7 +16,7 @@
 		<h1><%= @exam.title %></h1>
 		
 		
-		<% @questions.each do |question| %>
+		<% @questions.sort_by(&:position).each do |question| %>
 			<hr />
 			<div class="row">
 								
@@ -75,7 +75,7 @@
 									<textarea style="width: 97%; height: 100px;" name="body"><%= question.body %></textarea>
 								</fieldset>
 								<fieldset>
-									<% question.answers.sort_by(&:body).each do |answer| %>
+									<% answers.sort_by(&:body).each do |answer| %>
 										<br />
 										<p>
 											<input type="radio" name="required_answer" value="<%= answer.id %>" <%= 'checked' if answer.required %> />&nbsp;

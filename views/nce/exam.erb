@@ -75,7 +75,7 @@
 	<hr />
 <% end %>
 
-<% @questions.each do |question| %>
+<% @questions.sort_by(&:position).each do |question| %>
 	<% notes = nil %>
 
 	<%=

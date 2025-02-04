@@ -7,7 +7,7 @@ end
 get '/admin/exams/:id/?' do
 	admin!
 	@exam = Exam[params[:id]]
-	@questions = @exam.questions
+	@questions = Question.where(exam_id: params[:id]).order(:body)
 	@answers = Answer.where(question_id: params[:question_id]).order(:body)
   
 	erb :'admin/exam'
