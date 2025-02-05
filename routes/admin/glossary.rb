@@ -13,7 +13,7 @@ get '/admin/glossaries/other?' do
 		g.chapter = '' if g.chapter.nil?
 	end
 	
-  erb :'admin/glossary'
+  erb :'admin/glossaries'
 end
 
 get '/admin/glossaries/ncmhce?' do

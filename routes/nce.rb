@@ -84,7 +84,7 @@ get '/nce/exams/:id/?' do
 	end
   
   # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:id])).order(:body)
-  @answers = Answer.where(question_id: params[:id]).order(:body)
+  @answers = Answer.where(question_id: params[:question_id]).order(:body)
   
   erb :'nce/exam'
 end

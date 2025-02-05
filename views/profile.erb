@@ -164,7 +164,7 @@
 				<tr>
 					<th style="text-align: center;">Set</th>
 					<th style=" padding-left: 2em;">Case Study</th>
-					<!-- <th>Last Taken</th> -->
+					<th style="text-align: left;">Created</th>
 					<th style="text-align: center;">Score</th>
 					<th> </th>
 				</tr>
@@ -176,7 +176,7 @@
 				<tr class="cs">
 					<td style="text-align: center; background-color: #7c7c7d; color: white;">Free</td>
 					<td style=" padding-left: 2em;">Sample Case Study</td>
-					<!-- <td><%= caseaverage.updated_at.display_short %></td> -->
+					<td><%= caseaverage.created_at.display_short %></td>
 					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
@@ -194,8 +194,8 @@
 				<tr class="cs">
 					<td style="text-align: center; background-color: #0a7fff; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
-					<!-- <td><%= caseaverage.updated_at %></td> -->
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td><%= caseaverage.created_at %></td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -220,8 +220,8 @@
 				<tr class="cs">
 					<td style="text-align: center; background-color: #dbb341; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
-					<!-- <td><%= caseaverage.updated_at %></td> -->
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td><%= caseaverage.created_at %></td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -246,8 +246,8 @@
 				<tr class="cs">
 					<td style="text-align: center; background-color: #7161b6; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
-					<!-- <td><%= caseaverage.updated_at %></td> -->
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td><%= caseaverage.created_at %></td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -272,8 +272,8 @@
 				<tr class="cs">
 					<td style="text-align: center; background-color: #da655a; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
-					<!-- <td><%= caseaverage.updated_at %></td> -->
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td><%= caseaverage.created_at %></td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>

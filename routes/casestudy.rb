@@ -38,7 +38,7 @@ get '/casestudies/:sett/setscore/?' do
     sum = 0
     @caseaverages = Caseaverage.each do  |s|
       if s.sett == params[:sett] && s.user_id == session[:user]
-        sum += s.casescore
+        sum += s.score
         @setscore = sum/12
       end
     end
@@ -202,7 +202,7 @@ get '/casestudies/:id/casescore/?' do
   
   @percent = (@counter * 100) / 13
   
-  Caseaverage.find_or_create(casestudy_id: params[:id], user_id: session[:user], casescore: @percent, title: @title, sett: @sett)
+  Caseaverage.find_or_create(casestudy_id: params[:id], user_id: session[:user], score: @percent, title: @title, sett: @sett)
   
 
   
