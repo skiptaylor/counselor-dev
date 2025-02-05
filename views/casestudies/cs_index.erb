@@ -49,7 +49,7 @@
 			<tbody>
 				<% @user.caseaverages.each do |caseaverage| %>
 				<% if caseaverage.casestudy_id != nil %>
-				<% if caseaverage.cvasescore > 0 %>
+				<% if caseaverage.casescore > 0 %>
 				<tr class="cs">
 					<% if caseaverage.casestudy.sett == "Z" %>
 					<td><strong>Free Sample</strong></td>
