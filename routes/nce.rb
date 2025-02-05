@@ -44,7 +44,10 @@ get '/nce/guide/:id/:group/?' do
 	end
 
 	@exams = Exam[params[:id]]
-	@questions = Question.where(exam_id: params[:exam_id], score_type2: params[:group]).order(:position)
+	@questions = Question.where(exam_id: params[:id], score_type2: params[:group]).order(:position)
+  #   if params[:group]
+  #   @questions = @questions.where(score_type: params[:group], score_type2: params[:group])
+  # end
 	@answers = Answer.where(question_id: params[:question_id]).order(:body)
 	
   erb :'nce/guide'
@@ -82,7 +85,7 @@ get '/nce/exams/:id/?' do
   
   # @answers = Answer.where(question_id: Question.select(:id).where(exam_id: params[:id])).order(:body)
   @answers = Answer.where(question_id: params[:id]).order(:body)
-  puts params
+  
   erb :'nce/exam'
 end
 

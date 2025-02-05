@@ -125,7 +125,7 @@
 		<% question.answers.sort_by(&:body).each do |answer| %>
 				<% notes = answer.response if @average && answer.required %>
 				<div class="span12">
-				
+				puts params
 					<%
 						if @average && @scores.include?(answer.id) && answer.required
 							style = 'color: green; font-weight: bold;'
