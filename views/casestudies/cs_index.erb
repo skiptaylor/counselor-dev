@@ -49,12 +49,12 @@
 			<tbody>
 				<% @user.caseaverages.each do |caseaverage| %>
 				<% if caseaverage.casestudy_id != nil %>
-				<% if caseaverage.score > 0 %>
+				<% if caseaverage.cvasescore > 0 %>
 				<tr class="cs">
 					<% if caseaverage.casestudy.sett == "Z" %>
 					<td><strong>Free Sample</strong></td>
 					<td><%= caseaverage.casestudy.diagnosis %></td>
-					<% if caseaverage.score > 0 %>
+					<% if caseaverage.casescore > 0 %>
 					<td style="text-align: right;"><a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>casescore">Review</a></td>
 					<% else %>
 					<td style="text-align: right;"><a class="btn btn-mini btn-primary" href="/casestudies/<%= caseaverage.casestudy.id %>">Take&nbsp;Exam</a></td>
