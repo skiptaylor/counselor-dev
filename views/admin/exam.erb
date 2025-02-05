@@ -75,7 +75,7 @@
 									<textarea style="width: 97%; height: 100px;" name="body"><%= question.body %></textarea>
 								</fieldset>
 								<fieldset>
-									<% answers.sort_by(&:body).each do |answer| %>
+									<% question.answers.sort_by(&:body).each do |answer| %>
 										<br />
 										<p>
 											<input type="radio" name="required_answer" value="<%= answer.id %>" <%= 'checked' if answer.required %> />&nbsp;
