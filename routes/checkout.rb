@@ -226,7 +226,7 @@ post '/checkout/:product/?' do
     
   end
   
-  Stripe.api_key = ""
+  Stripe.api_key = STRIPE_PRIVATE_KEY
  
   if charge = Stripe::Charge.create(amount: (params[:amount].to_f * 100).to_i,
                                currency: "usd",

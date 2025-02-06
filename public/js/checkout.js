@@ -1,7 +1,7 @@
 (function() {
   $(window).load(function() {
     var displayErrors, summarize, validateEmail;
-    Stripe.setPublishableKey('');
+    Stripe.setPublishableKey('<%= STRIPE_PUBLISH_KEY %>');
     $.ajaxSetup({
       async: false
     });
@@ -34,20 +34,12 @@
       $('#package-amount').html(package_total.toFixed(2));
       $('#hard_copy-amount').html(hardcopy_total.toFixed(2));
       $('#nce_hard_copy-amount').html(nce_hardcopy_total.toFixed(2));
-      if ($('input#zip').val()) {
-        zip = $('input#zip').val();
-      } else {
-        zip = 0;
-      }
-      $.get('/tax/' + zip, function(data) {
-        var tax;
-        tax = total * data;
-        return total = (total + tax).toFixed(2);
-      });
+			
+
       $('input#amount').val(total);
       $('#total-display').html(total);
-      ga = total - (package_total + hardcopy_total + nce_hardcopy_total);
-      $('#ga-tax').html(ga.toFixed(2));
+			
+
       return $('.submit-button').removeAttr('disabled').removeClass('disabled');
     };
     summarize();
