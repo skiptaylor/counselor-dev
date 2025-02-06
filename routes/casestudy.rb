@@ -38,7 +38,7 @@ get '/casestudies/:sett/setscore/?' do
     sum = 0
     @caseaverages = Caseaverage.each do  |s|
       if s.sett == params[:sett] && s.user_id == session[:user]
-        sum += s.casescore
+        sum += s.score
         @setscore = sum/12
       end
     end

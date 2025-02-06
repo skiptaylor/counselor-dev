@@ -195,7 +195,7 @@
 					<td style="text-align: center; background-color: #0a7fff; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
 					<td><%= caseaverage.created_at %></td>
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -221,7 +221,7 @@
 					<td style="text-align: center; background-color: #dbb341; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
 					<td><%= caseaverage.created_at %></td>
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -247,7 +247,7 @@
 					<td style="text-align: center; background-color: #7161b6; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
 					<td><%= caseaverage.created_at %></td>
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
@@ -273,7 +273,7 @@
 					<td style="text-align: center; background-color: #da655a; color: white;"><strong><%= caseaverage.casestudy.sett %></strong></td>
 					<td style=" padding-left: 2em;">Case Study <%= caseaverage.casestudy.title %></td>
 					<td><%= caseaverage.created_at %></td>
-					<td style="text-align: center;"><%= caseaverage.csaescore %>%</td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
