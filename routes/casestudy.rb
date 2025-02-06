@@ -124,7 +124,7 @@ get '/casestudies/sample/?' do
 		session[:user] = user.id
 		session[:sample] = true
 	end
-  user.save
+
   redirect '/casestudies/1'
 end
 
