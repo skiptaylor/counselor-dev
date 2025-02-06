@@ -177,7 +177,7 @@
 					<td style="text-align: center; background-color: #7c7c7d; color: white;">Free</td>
 					<td style=" padding-left: 2em;">Sample Case Study</td>
 					<td><%= caseaverage.created_at.display_short %></td>
-					<td style="text-align: center;"><%= caseaverage.casescore %>%</td>
+					<td style="text-align: center;"><%= caseaverage.score %>%</td>
 					<td style="text-align: right;">
 						<% unless @user.expired? %>
 							<a class="btn btn-mini btn-info" href="/casestudies/<%= caseaverage.casestudy.id %>/casescore">Review</a>
