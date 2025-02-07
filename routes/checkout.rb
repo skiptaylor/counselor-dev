@@ -209,21 +209,20 @@ post '/checkout/:product/?' do
      params[:nce_hard_copy] = 'NCE: Hard Copy'
                         msg = false
   end
-  
  
   if params[:user_id]
-    
-    
 		if (params[:package] == 'Account Extension')
 			user.expiration_date = (user.expiration_date + 90)
     elsif (params[:package] == 'Account Expiration')
       user.expiration_date = (DateTime.now + 90)
   	elsif (params[:package] == 'NCMHCE: Hard Copy') || (params[:package] == 'NCE: Hard Copy') || (params[:package] == 'NCMHCE: Second Chance Upgrade') || (params[:hard_copy] == 'NCMHCE Hard Copy') || (params[:nce_hard_copy] == 'NCE Hard Copy')
   		user.expiration_date = (user.expiration_date + 0)
-		else
+    elsif (params[:package] == 'NCE: Basic Package') || (params[:package] == 'NCE: Enhanced Package') || (params[:package] == 'NCMHCE: Starter Package SetA') || (params[:package] == 'NCMHCE: Starter Package SetB') || (params[:package] == 'NCMHCE: Starter Package SetC') || (params[:package] == 'NCMHCE: Starter Package SetD') || (params[:package] == 'NCMHCE: Package SetA') || (params[:package] == 'NCMHCE: Package SetB') || (params[:package] == 'NCMHCE: Package SetC') || (params[:package] = 'NCMHCE: Package SetD') || (params[:package] == 'NCMHCE: Full Package') || (params[:package] == 'NCMHCE: Second Chance Upgrade') || (params[:package] = 'NCE: Upgrade')
 			user.expiration_date = (DateTime.now + 365)
+    else
+      user.expiration_date = (DateTime.now + 1)
 		end
-     
+      
     user.save
     
   end

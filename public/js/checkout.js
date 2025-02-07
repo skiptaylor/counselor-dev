@@ -1,7 +1,7 @@
 (function() {
   $(window).load(function() {
     var displayErrors, summarize, validateEmail;
-    Stripe.setPublishableKey('pk_09rfEloWlDjIMVTav6KJJ0ijH3b57');
+    Stripe.setPublishableKey(' pk_test_51OOlWNGu502r8JxjoS3nU1483dGCWAReZ5qGZb2ZHxsMcnWTbVbPCtjbMRAPnH3gQHMVgtoXvYmrcrZmsbr6kQar00v9HEIM7z');
     $.ajaxSetup({
       async: false
     });
