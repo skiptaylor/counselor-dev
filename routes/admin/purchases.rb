@@ -46,14 +46,14 @@ end
 
 get '/admin/purchases/:id/?' do
   admin!
-  @purchase = Purchase[params[:id]]
+  @purchases = Purchase[params[:id]]
   erb :'admin/purchase'
 end
 
 post '/admin/purchases/:id/?' do
   admin!
 
-  purchase = Purchase[params[:id]]
+  purchases = Purchase[params[:id]]
   purchase.update(
     shipped_on: Date.from_fields(
       params[:shipped_on_year],

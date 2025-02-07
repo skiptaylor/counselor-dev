@@ -86,6 +86,6 @@ module Chassis
 	end
 end
 
-Date.class_eval			{ include Chassis::DateTime }
-Time.class_eval			{ include Chassis::DateTime }
-DateTime.class_eval	{ include Chassis::DateTime }
+Date.class_eval      { include Chassis::DateTime }
+Time.class_eval      { include Chassis::DateTime }
+DateTime.class_eval  { include Chassis::DateTime }

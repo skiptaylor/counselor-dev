@@ -40,7 +40,7 @@ get '/checkout/:product/?' do
 	end
 
 	unless @user
-		@user = User.get(session[:user]) if session[:user]
+		@user = User[session[:user]] if session[:user]
 	end
 
 	erb :'checkout/index'
@@ -62,17 +62,17 @@ post '/checkout/:product/?' do
 	params[:zip].strip!
 	
   if params[:user_id]
-		user = User.get params[:user_id]
+		user = User[params[:user_id]]
 		params[:email] = user.email
   else
 		user = User.new(email: params[:email],
 		                password: params[:password],
                         name: params[:name],
                    max_exams: 0,
-                        setA: false,
-                        setB: false,
-                        setC: false,
-                        setD: false,
+                        set_a: false,
+                        set_b: false,
+                        set_c: false,
+                        set_d: false,
                    hard_copy: false,
                nce_hard_copy: false,
                nce_downloads: false,
@@ -100,76 +100,75 @@ post '/checkout/:product/?' do
 
   when 'Starter Package SetA'
     user.casestudy_downloads = true
-           user.setA = true
+           user.set_a = true
     params[:package] = 'NCMHCE: Starter Package SetA'
                email = 'ncmhce'
                  msg = true
     
   when 'Starter Package SetB'
     user.casestudy_downloads = true
-           user.setB = true
+           user.set_b = true
     params[:package] = 'NCMHCE: Starter Package SetB'
                email = 'ncmhce'
                  msg = true
     
   when 'Starter Package SetC'
     user.casestudy_downloads = true
-           user.setC = true
-    params[:package] = 'NCMHCE: Starter Package SetC'
+           user.set_c = 'NCMHCE: Starter Package SetC'
                email = 'ncmhce'
                  msg = true
     
   when 'Starter Package SetD'
     user.casestudy_downloads = true
-           user.setD = true
+           user.set_d = true
     params[:package] = 'NCMHCE: Starter Package SetD'
                email = 'ncmhce'
                  msg = true
     
   when 'Package SetA'
     user.casestudy_downloads = true
-           user.setA = true
+           user.set_a = true
     params[:package] = 'NCMHCE: Package SetA'
                email = 'ncmhce'
                  msg = true
     
   when 'Package SetB'
     user.casestudy_downloads = true
-           user.setB = true
+           user.set_b = true
     params[:package] = 'NCMHCE: Package SetB'
                email = 'ncmhce'
                  msg = true
     
   when 'Package SetC'
     user.casestudy_downloads = true
-           user.setC = true
+           user.set_c = true
     params[:package] = 'NCMHCE: Package SetC'
                email = 'ncmhce'
                  msg = true
     
   when 'Package SetD'
     user.casestudy_downloads = true
-           user.setD = true
+           user.set_d = true
     params[:package] = 'NCMHCE: Package SetD'
                email = 'ncmhce'
                  msg = true
 
   when 'Full Package'
     user.casestudy_downloads = true
-    user.setA = true
-    user.setB = true
-    user.setC = true
-    user.setD = true
+    user.set_a = true
+    user.set_b = true
+    user.set_c = true
+    user.set_d = true
     params[:package] = 'NCMHCE: Full Package'
                email = 'ncmhce'
                  msg = true
 
   when 'Second Chance Upgrade'
     user.casestudy_downloads = true
-    user.setA = true
-    user.setB = true
-    user.setC = true
-    user.setD = true
+    user.set_a = true
+    user.set_b = true
+    user.set_c = true
+    user.set_d = true
       params[:package] = 'NCMHCE: Second Chance Upgrade'
                    msg = false
 
@@ -211,8 +210,10 @@ post '/checkout/:product/?' do
                         msg = false
   end
   
-  
+ 
   if params[:user_id]
+    
+    
 		if (params[:package] == 'Account Extension')
 			user.expiration_date = (user.expiration_date + 90)
     elsif (params[:package] == 'Account Expiration')
@@ -222,29 +223,35 @@ post '/checkout/:product/?' do
 		else
 			user.expiration_date = (DateTime.now + 365)
 		end
+     
     user.save
     
   end
   
   Stripe.api_key = ENV.fetch('STRIPE_PRIVATE_KEY')
-  
+ 
   if charge = Stripe::Charge.create(amount: (params[:amount].to_f * 100).to_i,
                                currency: "usd",
                                    card: params[:stripeToken],
                             description: "#{params[:name]} (#{params[:email]}) #{params[:package]}") 
     user.save
-  	user.purchases.create(package: params[:package],
-  		                    options: params[:optional],
-                    nce_hard_copy: params[:nce_hard_copy],
-                        hard_copy: params[:hard_copy],
-                        stripe_id: charge.id,
-                           amount: params[:amount],
-                         address1: params[:address1],
-                         address2: params[:address2],
-                             city: params[:city],
-                            state: params[:state],
-                              zip: params[:zip])
-      
+    
+    
+  	Purchase.create(package: params[:package],
+  	                options: params[:optional],
+              nce_hard_copy: params[:nce_hard_copy],
+                  hard_copy: params[:hard_copy],
+                  stripe_id: charge.id,
+                     amount: params[:amount],
+                   address1: params[:address1],
+                   address2: params[:address2],
+                       city: params[:city],
+                      state: params[:state],
+                        zip: params[:zip],
+                    user_id: user.id
+    )
+
+
     if settings.environment == 'production'
       unless user.purchases.count > 1 
        if (params[:package] == 'NCMHCE: Starter Package SetA') || (params[:package] == 'NCMHCE: Starter Package SetB') || (params[:package] == 'NCMHCE: Starter Package SetC') || (params[:package] == 'NCMHCE: Starter Package SetD')
@@ -257,9 +264,10 @@ post '/checkout/:product/?' do
           Email.welcome(user.email, user.name, user.email, email, "#{params[:package]}", params[:amount])
        end
      end
-    end
+   end
     
     sign_in user.id, msg: msg
+
   else
     session[:alert] = { style: 'alert-error',
                       message: "There was an error charging your card. Please call support at 888-326-9229, Monday - Friday, 9:00 AM - 5:00 PM EST." }
