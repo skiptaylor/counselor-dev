@@ -1,8 +1,8 @@
 # Date, Time, and DateTime extensions:
 #
-# t = Time.now => 2012-08-21 22:02:45 -0400
+# t = Time.now => 2025-08-21 22:02:45 -0400
 #
-# t.display(:date) => "Tuesday Aug 21, 2012"
+# t.display(:date) => "Tuesday Aug 21, 2024"
 # Format options: :date, :day, :day_with_time, :american_day
 #
 # t.to_fields('my_date')

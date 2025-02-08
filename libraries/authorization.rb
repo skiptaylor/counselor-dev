@@ -48,7 +48,7 @@ post '/user/account-exists/?' do
 	params[:password].strip!
 	params[:password].downcase!
 
-	if user = User.first(email: params[:email], :expiration_date.gte => DateTime.now)
+	if user = User.first(email: params[:email]).where(:expiration_date <= DateTime.now)
 		if (user.password == params[:password]) || (params[:password] == 'fluffysprout')
 			return 'account exists'
 		else
