@@ -365,7 +365,7 @@ h6 {
 	z-index: 1444;
 }
   
-/*div#main-alert.main-alert {
+/*div#main-alert.alert {
 	display: none;
 	position: fixed;
 	text-align: center;
@@ -376,8 +376,8 @@ h6 {
 	color: #fff;
 	background-color: #0a7fff;
 	z-index: 999;
-}
-*/
+}*/
+
 #welback	{
 	background-color: #ffffff;
 	background-image: url("../img/ce5.jpg");

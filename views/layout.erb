@@ -132,11 +132,11 @@
 	
 	<div id="content">
 		
-		
+		<div id="main-alert" style="text-align: center; position: fixed; width: 100%; margin-top: -18px; background-color: #034fc8: color: white;"><%= alert %></div>
 		
 		<div class="container">
 			
-			<%= alert %>
+			
 			<%= yield %>
 		
 		</div>
@@ -159,8 +159,8 @@
 <script>
 	$(document).ready(function(){
 		setTimeout(function(){
-			$("#alert").fadeOut("slow", function () {
-			$("#alert").remove();
+			$("#main-alert").fadeOut("slow", function () {
+			$("#main-alert").remove();
 	      });
 		}, 4000);
 	});
